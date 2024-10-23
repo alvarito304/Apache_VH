@@ -1,0 +1,14 @@
+services:
+  apache: 
+    image: ubuntu/apache2:latest
+    container_name: apache
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./websites:/var/www/html
+      - ./sites-availabe:/etc/apache2/sites-available
+      - ./sslcert:/etc/apache2/ssl
+      - ./htpasswd:/etc/apache2/htpasswd
+      - ./scripts:/scripts
+    entrypoint: scripts/entrypoint.sh
